@@ -12,10 +12,10 @@ export class IngredientService {
     constructor(private http: Http) {}
 
     getHops(): Observable<Hop[]> {
-        return this.http.get("/api/hops")
+        return this.http.get("/api/ingredient/hops")
                 //.toPromise()
                 //.then(response => response.json() as Hop[])
-                .map((res: Response) => res.json() as Hop[])
+                .map((res: Response) => res.json().data as Hop[])
                 .catch(this.handleError);
     }
 

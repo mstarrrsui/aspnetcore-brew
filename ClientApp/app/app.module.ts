@@ -9,8 +9,8 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { IngredientService } from "./components/ingredients/shared/ingredient.service";
 import { ToastrService } from "./components/common/toastr.service";
-//import { HopsListComponent } from "./components/ingredients/hops-list.component";
-//import { HopsItemComponent } from "./components/ingredients/hops-item.component";
+import { HopsListComponent } from "./components/ingredients/hops-list.component";
+import { HopsItemComponent } from "./components/ingredients/hops-item.component";
 import { HttpModule } from "@angular/http";
 
 @NgModule({
@@ -21,8 +21,8 @@ import { HttpModule } from "@angular/http";
         NavBarComponent,
         CounterComponent,
         FetchDataComponent,
-        //HopsListComponent,
-        //HopsItemComponent,
+        HopsListComponent,
+        HopsItemComponent,
         HomeComponent
     ],
     imports: [
@@ -32,6 +32,7 @@ import { HttpModule } from "@angular/http";
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
+            { path: 'hops', component: HopsListComponent },
             { path: '**', redirectTo: 'home' }
         ]),
         HttpModule

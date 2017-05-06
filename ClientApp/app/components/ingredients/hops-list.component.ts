@@ -1,17 +1,17 @@
 import { Component, OnInit } from "@angular/core";
 import { IngredientService } from "./shared/ingredient.service";
 import { Hop } from "./model/hop.model";
-import { ToastrService } from "../common/toastr.service";
+//import { ToastrService } from "../common/toastr.service";
 
 @Component({
     selector: "hops-list",
-    templateUrl: "app/ingredients/hops-list.component.html"
+    templateUrl: "./hops-list.component.html"
 })
 export class HopsListComponent implements OnInit {
 
     hopdata: Hop[];
 
-    constructor(private ingredientService: IngredientService, private toastr: ToastrService) { }
+    constructor(private ingredientService: IngredientService) { }
 
     ngOnInit() {
         this.ingredientService.getHops().subscribe( data => this.hopdata = data);
@@ -19,6 +19,6 @@ export class HopsListComponent implements OnInit {
 
     handleItemClicked(item: Hop) {
         console.log("received:", item.name);
-        this.toastr.success(item.name);
+        //this.toastr.success(item.name);
     }
 }
