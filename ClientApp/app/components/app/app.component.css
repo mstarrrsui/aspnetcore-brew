@@ -1,6 +1,38 @@
-@media (max-width: 767px) {
-    /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
-    .body-content {
-        padding-top: 50px;
-    }
+/* app css stylesheet */
+
+.hoverwell:hover {
+    background-color: #485563;
+    cursor: pointer;
+}
+
+.container {
+    padding-top: 10px;
+}
+
+.pointable {
+    cursor: pointer;
+}
+
+button {
+    color: #555;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.toast-success {
+    background-color: #51a351;
+}
+
+.toast-error {
+    background-color: #bd362f;
+}
+
+.toast-info {
+    background-color: #2f96b4;
+}
+
+.toast-warning {
+    background-color: #f89406;
 }

@@ -12,6 +12,8 @@ import { ToastrService } from "./components/common/toastr.service";
 import { HopsListComponent } from "./components/ingredients/hops-list.component";
 import { HopsItemComponent } from "./components/ingredients/hops-item.component";
 import { HttpModule } from "@angular/http";
+import { appRoutes } from "./routes";
+
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -27,14 +29,7 @@ import { HttpModule } from "@angular/http";
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
-        RouterModule.forRoot([
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: 'home', component: HomeComponent },
-            { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
-            { path: 'hops', component: HopsListComponent },
-            { path: '**', redirectTo: 'home' }
-        ]),
+        RouterModule.forRoot(appRoutes),
         HttpModule
     ],
     providers: [ IngredientService, ToastrService ]
