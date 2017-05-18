@@ -5,6 +5,7 @@ const merge = require('webpack-merge');
 
 module.exports = (env) => {
     const extractCSS = new ExtractTextPlugin('vendor.css');
+    const extractAppCSS = new ExtractTextPlugin('app.css');
     const isDevBuild = !(env && env.prod);
     const sharedConfig = {
         stats: { modules: false },
@@ -29,6 +30,7 @@ module.exports = (env) => {
                 'bootstrap',
                 //'bootstrap/dist/css/bootstrap.css',
                 './ClientApp/styles/bootstrap/bootstrap.min.css',
+                './ClientApp/styles/app/styles.css',
                 'es6-shim',
                 'es6-promise',
                 'event-source-polyfill',
@@ -53,11 +55,13 @@ module.exports = (env) => {
         output: { path: path.join(__dirname, 'wwwroot', 'dist') },
         module: {
             rules: [
-                { test: /\.css(\?|$)/, use: extractCSS.extract({ use: 'css-loader' }) }
+                { test: /\.css(\?|$)/, exclude: path.resolve(__dirname, 'ClientApp/styles/app'), use: extractCSS.extract({ use: 'css-loader' }) },
+                { include: path.resolve(__dirname, 'ClientApp/styles/app'), use: extractAppCSS.extract({ use: 'css-loader' }) }
             ]
         },
         plugins: [
             extractCSS,
+            extractAppCSS,
             new webpack.DllPlugin({
                 path: path.join(__dirname, 'wwwroot', 'dist', '[name]-manifest.json'),
                 name: '[name]_[hash]'
@@ -76,6 +80,7 @@ module.exports = (env) => {
         },
         module: {
             rules: [{ test: /\.css(\?|$)/, use: ['to-string-loader', 'css-loader'] }]
+
         },
         entry: { vendor: ['aspnet-prerendering'] },
         plugins: [
@@ -86,33 +91,7 @@ module.exports = (env) => {
         ]
     });
 
-    const myBundleConfig = merge(sharedConfig, {
-       stats: { modules: false },
-        resolve: { extensions: ['.js'] },
-        module: {
-            rules: [
-                { test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, use: 'url-loader?limit=100000' }
-            ]
-        },
-        entry: {
-            vendor: [
-                //'bootstrap/dist/css/bootstrap.css',
-                './ClientApp/styles/styles.css',
-            ]
-        },
-        output: {
-            publicPath: '/dist/',
-            filename: '[name].js',
-            library: '[name]_[hash]'
-        }
-        entry: { vendor: ['aspnet-prerendering'] },
-        plugins: [
-            new webpack.DllPlugin({
-                path: path.join(__dirname, 'ClientApp', 'dist', '[name]-manifest.json'),
-                name: '[name]_[hash]'
-            })
-        ]
-    })
+
 
     return [clientBundleConfig, serverBundleConfig];
 }
