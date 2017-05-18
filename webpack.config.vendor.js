@@ -86,5 +86,33 @@ module.exports = (env) => {
         ]
     });
 
+    const myBundleConfig = merge(sharedConfig, {
+       stats: { modules: false },
+        resolve: { extensions: ['.js'] },
+        module: {
+            rules: [
+                { test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, use: 'url-loader?limit=100000' }
+            ]
+        },
+        entry: {
+            vendor: [
+                //'bootstrap/dist/css/bootstrap.css',
+                './ClientApp/styles/styles.css',
+            ]
+        },
+        output: {
+            publicPath: '/dist/',
+            filename: '[name].js',
+            library: '[name]_[hash]'
+        }
+        entry: { vendor: ['aspnet-prerendering'] },
+        plugins: [
+            new webpack.DllPlugin({
+                path: path.join(__dirname, 'ClientApp', 'dist', '[name]-manifest.json'),
+                name: '[name]_[hash]'
+            })
+        ]
+    })
+
     return [clientBundleConfig, serverBundleConfig];
 }
