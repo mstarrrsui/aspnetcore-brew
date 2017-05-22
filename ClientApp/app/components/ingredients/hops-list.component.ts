@@ -9,12 +9,13 @@ import { Hop } from "./model/hop.model";
 })
 export class HopsListComponent implements OnInit {
 
-    hopdata: Hop[];
+    public hopdata: Hop[];
 
     constructor(private ingredientService: IngredientService) { }
 
     ngOnInit() {
-        this.ingredientService.getHops().subscribe( data => this.hopdata = data);
+        //this.ingredientService.getHops().subscribe( data => this.hopdata = data);
+        this.ingredientService.getHops2( data => this.hopdata = data);
     }
 
     handleItemClicked(item: Hop) {

@@ -19,6 +19,14 @@ export class IngredientService {
                 .catch(this.handleError);
     }
 
+    getHops2(onNext: (hopslist: Hop[]) => void): void {
+        this.http.get("/api/ingredient/hops")
+                //.toPromise()
+                //.then(response => response.json() as Hop[])
+                .map((res: Response) => res.json().data as Hop[])
+                .subscribe(onNext,this.handleError)
+    }
+
     // private handleError(error: any): Promise<any> {
     //     console.error("An error occurred", error); // for demo purposes only
     //     return Promise.reject(error.message || error);
