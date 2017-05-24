@@ -7,6 +7,19 @@ const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
 
 module.exports = function(config) {
     config.set({
+
+
+        customLaunchers: {
+            ChromeDebugging: {
+                base: 'Chrome',
+                flags: ['--remote-debugging-port=9222']
+            }
+        },
+
+        browsers: [
+            'ChromeDebugging'
+        ],
+
         basePath: '.',
         frameworks: ['jasmine'],
         files: [

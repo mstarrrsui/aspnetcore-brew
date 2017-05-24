@@ -2,7 +2,7 @@
     "name": "aspnetcore_brew",
     "version": "0.0.0",
     "scripts": {
-        "test": "karma start ClientApp/test/karma.conf.js"
+        "test": "karma start ClientApp/test/karma.conf.js --browsers ChromeDebugging"
     },
     "dependencies": {
         "@angular/common": "^2.4.5",
