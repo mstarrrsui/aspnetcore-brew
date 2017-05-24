@@ -2,8 +2,7 @@
     "name": "aspnetcore_brew",
     "version": "0.0.0",
     "scripts": {
-        "validate-webpack-vendor": "webpack-validator webpack.config.vendor.js",
-        "test": "karma start ClientApp/test/karma.conf.js"
+        "test": "karma start ClientApp/test/karma.conf.js --browsers ChromeDebugging"
     },
     "dependencies": {
         "@angular/common": "^2.4.5",
@@ -18,14 +17,12 @@
         "@types/node": "^6.0.42",
         "angular2-platform-node": "~2.0.11",
         "angular2-template-loader": "^0.6.2",
-        "angular2-universal": "^2.1.0-rc.1",
-        "angular2-universal-patch": "^0.2.1",
-        "angular2-universal-polyfills": "^2.1.0-rc.1",
         "aspnet-prerendering": "^2.0.0",
         "aspnet-webpack": "^1.0.17",
         "awesome-typescript-loader": "^3.0.0",
         "bootstrap": "^3.3.7",
         "bootswatch": "^3.3.7",
+        "core-js": "^2.4.1",
         "css": "^2.2.1",
         "css-loader": "^0.25.0",
         "es6-shim": "^0.35.1",
@@ -55,12 +52,14 @@
         "@types/jasmine": "^2.5.37",
         "chai": "^3.5.0",
         "jasmine-core": "^2.5.2",
-        "karma": "^1.3.0",
+        "karma": "^1.7.0",
         "karma-chai": "^0.1.0",
         "karma-chrome-launcher": "^2.0.0",
         "karma-cli": "^1.0.1",
         "karma-jasmine": "^1.0.2",
-        "karma-webpack": "^1.8.0",
-        "webpack-validator": "^3.0.0"
+        "karma-jasmine-html-reporter": "^0.2.2",
+        "karma-mocha-reporter": "^2.2.3",
+        "karma-sourcemap-loader": "^0.3.7",
+        "karma-webpack": "^2.0.3"
     }
 }
