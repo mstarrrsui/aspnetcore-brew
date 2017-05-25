@@ -44,6 +44,10 @@ module.exports = function(config) {
             stats: { modules: false },
             context: path.resolve(__dirname, "../.."),
             resolve: { extensions: ['.js', '.ts'] },
+            node: {
+                fs: "empty"
+            },
+
             output: {
                 filename: '[name].js',
                 publicPath: '/dist/', // Webpack dev middleware, if enabled, handles requests for this URL prefix
